@@ -30,72 +30,75 @@ export default function LandingPage({ setActivePage }) {
       {/* Hero Section */}
       <section className="relative pt-6 pb-16 lg:pt-12 lg:pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            
-            {/* Left Column: Hero Text */}
-            <div className="lg:col-span-6 space-y-6 text-center lg:text-left z-20" data-aos="fade-right" data-aos-duration="900">
-              
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-950/80 to-indigo-950/80 border border-cyan-500/30 text-cyan-300 text-xs font-semibold shadow-inner">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-spin-slow" />
-                <span>Next-Gen Machine Learning • Decision Tree Depth 4</span>
-              </div>
 
-              <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.12]">
-                Decode Your <span className="text-gradient">Learner Type</span> & Predict Success.
-              </h1>
+          {/* Full-width 3D Canvas behind the hero text */}
+          <div className="relative w-full" data-aos="fade-up" data-aos-duration="900">
 
-              <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-xl mx-auto lg:mx-0">
-                A state-of-the-art predictive ML intelligence framework analyzing study consistency, conceptual grasp, and AI tool dependency across <span className="text-cyan-400 font-semibold">8,000+ student trajectories</span>.
-              </p>
+            {/* 3D canvas — full max-width, no square constraint */}
+            <div className="relative w-full rounded-3xl overflow-hidden border border-cyan-500/20 bg-gradient-to-b from-cyan-500/10 via-indigo-500/5 to-transparent shadow-2xl shadow-cyan-500/10">
+              <Hero3D />
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                <button
-                  onClick={() => setActivePage('predictor')}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-slate-950 font-bold text-base shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all duration-300"
-                >
-                  <Brain className="w-5 h-5" />
-                  <span>Launch AI Predictor</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+              {/* Overlay: hero text centred over the canvas */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-6 sm:px-12 text-center pointer-events-none">
 
-                <button
-                  onClick={() => setActivePage('analytics')}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-2xl glass-panel text-slate-200 hover:text-white hover:border-cyan-400/50 transition-all duration-300 text-sm font-semibold"
-                >
-                  <BarChart3 className="w-4 h-4 text-cyan-400" />
-                  <span>Explore 8,000 Dataset EDA</span>
-                </button>
-              </div>
-
-              {/* Mini Highlights */}
-              <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 font-mono">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>94.8% Test Accuracy</span>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-950/90 to-indigo-950/90 border border-cyan-500/40 text-cyan-300 text-xs font-semibold shadow-inner mb-5 pointer-events-auto">
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-spin-slow" />
+                  <span>Next-Gen Machine Learning • Decision Tree Depth 4</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                  <span>22 Behavioral Features</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-purple-400" />
-                  <span>5 Learner Personas</span>
-                </div>
-              </div>
 
+                <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-7xl tracking-tight text-white leading-[1.1] drop-shadow-2xl">
+                  Decode Your <span className="text-gradient">Learner Type</span>
+                  <br className="hidden sm:block" /> &amp; Predict Success.
+                </h1>
+
+                <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mt-5 drop-shadow-lg">
+                  A state-of-the-art predictive ML intelligence framework analyzing study consistency, conceptual grasp, and AI tool dependency across{' '}
+                  <span className="text-cyan-400 font-semibold">8,000+ student trajectories</span>.
+                </p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6 pointer-events-auto">
+                  <button
+                    onClick={() => setActivePage('predictor')}
+                    className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-slate-950 font-bold text-base shadow-xl shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    <Brain className="w-5 h-5" />
+                    <span>Launch AI Predictor</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+
+                  <button
+                    onClick={() => setActivePage('analytics')}
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-700/80 text-slate-200 hover:text-white hover:border-cyan-400/50 transition-all duration-300 text-sm font-semibold"
+                  >
+                    <BarChart3 className="w-4 h-4 text-cyan-400" />
+                    <span>Explore 8,000 Dataset EDA</span>
+                  </button>
+                </div>
+
+                {/* Mini Highlights */}
+                <div className="pt-5 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-300 font-mono pointer-events-auto">
+                  <div className="flex items-center gap-2 bg-slate-900/60 px-3 py-1.5 rounded-full border border-slate-700/60">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>94.8% Test Accuracy</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-slate-900/60 px-3 py-1.5 rounded-full border border-slate-700/60">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>22 Behavioral Features</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-slate-900/60 px-3 py-1.5 rounded-full border border-slate-700/60">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" />
+                    <span>5 Learner Personas</span>
+                  </div>
+                </div>
+
+              </div>
             </div>
-
-            {/* Right Column: 3D Interactive Canvas */}
-            <div className="lg:col-span-6 relative" data-aos="fade-left" data-aos-duration="900">
-              <div className="relative rounded-3xl p-1 bg-gradient-to-b from-cyan-500/20 via-indigo-500/10 to-transparent shadow-2xl border border-cyan-500/20">
-                <Hero3D />
-              </div>
-            </div>
-
           </div>
+
         </div>
       </section>
+
 
       {/* Live Dataset Metric Banner */}
       <section className="relative z-20 py-8 border-y border-slate-800/80 bg-slate-950/60 backdrop-blur-lg">

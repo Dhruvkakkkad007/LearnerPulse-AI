@@ -293,6 +293,7 @@ export default function ArchetypesPage({ setActivePage }) {
                 </span>
               </div>
 
+
               <div className="space-y-2.5">
                 {current.studyPlan.map((plan, i) => (
                   <div key={i} className="p-3 rounded-2xl bg-slate-900/85 border border-cyan-500/20 text-xs flex items-start gap-2.5">

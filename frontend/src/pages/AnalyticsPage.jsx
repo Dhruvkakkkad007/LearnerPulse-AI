@@ -32,6 +32,70 @@ export default function AnalyticsPage() {
     { depth: 8, train: 99.6, test: 90.8 },
   ];
 
+  // Task 5: 5 Algorithm results from model Training.ipynb
+  const modelComparison = [
+    {
+      name: 'Decision Tree',
+      badge: 'Baseline',
+      trainAcc: '92.52%',
+      testAcc: '92.38%',
+      precision: '95.03%',
+      recall: '96.49%',
+      f1Score: '95.76%',
+      cvScore: '92.39%',
+      cvSpread: '± 0.0053',
+      fit: 'Good fit ✅',
+    },
+    {
+      name: 'Random Forest (Bagging)',
+      badge: 'Ensemble',
+      trainAcc: '91.72%',
+      testAcc: '90.94%',
+      precision: '90.82%',
+      recall: '99.93%',
+      f1Score: '95.16%',
+      cvScore: '90.81%',
+      cvSpread: '± 0.0012',
+      fit: 'Good fit ✅',
+    },
+    {
+      name: 'AdaBoost',
+      badge: 'Boosting',
+      trainAcc: '93.91%',
+      testAcc: '93.88%',
+      precision: '95.98%',
+      recall: '97.20%',
+      f1Score: '96.59%',
+      cvScore: '93.67%',
+      cvSpread: '± 0.0038',
+      fit: 'Good fit ✅',
+    },
+    {
+      name: 'Gradient Boosting',
+      badge: 'Best ⭐',
+      trainAcc: '95.67%',
+      testAcc: '93.94%',
+      precision: '95.73%',
+      recall: '97.55%',
+      f1Score: '96.63%',
+      cvScore: '93.73%',
+      cvSpread: '± 0.0063',
+      fit: 'Good fit ✅',
+    },
+    {
+      name: 'Tuned Random Forest',
+      badge: 'Tuned (GridSearchCV)',
+      trainAcc: '93.83%',
+      testAcc: '92.38%',
+      precision: '92.56%',
+      recall: '99.44%',
+      f1Score: '95.88%',
+      cvScore: '92.70%',
+      cvSpread: '± 0.0021',
+      fit: 'Good fit ✅',
+    },
+  ];
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       
@@ -295,6 +359,111 @@ export default function AnalyticsPage() {
           </div>
 
         </div>
+      </div>
+
+      {/* Task 5: 5 Machine Learning Algorithms Benchmark & Analytics */}
+      <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6" data-aos="fade-up">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-4">
+          <div>
+            <div className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800/50 mb-1.5">
+              <Cpu className="w-3.5 h-3.5" /> Task 5 Algorithm Comparison & Evaluation
+            </div>
+            <h3 className="font-display font-bold text-2xl text-white flex items-center gap-2">
+              <Layers className="w-6 h-6 text-cyan-400" />
+              5 Classification Algorithms Benchmark Analytics
+            </h3>
+            <p className="text-xs text-slate-400 mt-1">
+              Empirical analytics evaluated across 5-Fold Cross-Validation, Overfitting checks, Precision, Recall, and F1-Scores.
+            </p>
+          </div>
+          <div className="flex items-center gap-2 font-mono text-xs text-cyan-300 bg-cyan-950/60 px-4 py-2 rounded-xl border border-cyan-700/50">
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span>Best Model: Gradient Boosting (93.94% Acc)</span>
+          </div>
+        </div>
+
+        {/* Algorithm Comparison Table */}
+        <div className="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-950/70">
+          <table className="w-full text-left text-xs">
+            <thead className="bg-slate-900/90 text-slate-300 font-mono text-[11px] uppercase border-b border-slate-800">
+              <tr>
+                <th className="py-3.5 px-4">Model Algorithm</th>
+                <th className="py-3.5 px-4">Train Acc</th>
+                <th className="py-3.5 px-4">Test Acc</th>
+                <th className="py-3.5 px-4">Precision</th>
+                <th className="py-3.5 px-4">Recall</th>
+                <th className="py-3.5 px-4">F1-Score</th>
+                <th className="py-3.5 px-4">5-Fold CV Mean</th>
+                <th className="py-3.5 px-4">CV Spread (Std)</th>
+                <th className="py-3.5 px-4">Overfitting Check</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-800/60 text-slate-300">
+              {modelComparison.map((m, idx) => (
+                <tr key={idx} className={`hover:bg-slate-900/50 transition-colors ${m.badge.includes('Best') ? 'bg-cyan-950/20' : ''}`}>
+                  <td className="py-3.5 px-4 font-semibold text-white">
+                    <div className="flex items-center gap-2">
+                      <span>{m.name}</span>
+                      <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${
+                        m.badge.includes('Best') ? 'bg-cyan-900/80 text-cyan-300 border border-cyan-500/40 font-bold' :
+                        m.badge.includes('Tuned') ? 'bg-purple-900/60 text-purple-300 border border-purple-700/40' :
+                        'bg-slate-800 text-slate-400'
+                      }`}>
+                        {m.badge}
+                      </span>
+                    </div>
+                  </td>
+                  <td className="py-3.5 px-4 font-mono">{m.trainAcc}</td>
+                  <td className="py-3.5 px-4 font-mono text-cyan-400 font-bold">{m.testAcc}</td>
+                  <td className="py-3.5 px-4 font-mono">{m.precision}</td>
+                  <td className="py-3.5 px-4 font-mono">{m.recall}</td>
+                  <td className="py-3.5 px-4 font-mono text-emerald-400 font-bold">{m.f1Score}</td>
+                  <td className="py-3.5 px-4 font-mono text-indigo-300">{m.cvScore}</td>
+                  <td className="py-3.5 px-4 font-mono text-slate-400">{m.cvSpread}</td>
+                  <td className="py-3.5 px-4">
+                    <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-950/60 text-emerald-400 border border-emerald-800/50 font-mono">
+                      {m.fit}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* 3 Analytics Takeaway Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+            <div className="text-xs font-bold text-cyan-400 flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+              Overfitting / Underfitting Analysis
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              All 5 models demonstrate tight convergence between Training scores and Testing scores (gap &lt; 2%), confirming zero overfitting and high generalization.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+            <div className="text-xs font-bold text-indigo-400 flex items-center gap-1.5">
+              <Activity className="w-4 h-4 text-indigo-400" />
+              5-Fold Cross Validation Stability
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Random Forest and Tuned RF achieved the lowest spread (± 0.0012 to ± 0.0021), proving high variance stability across folds.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1.5">
+            <div className="text-xs font-bold text-purple-400 flex items-center gap-1.5">
+              <TrendingUp className="w-4 h-4 text-purple-400" />
+              GridSearchCV Optimization Impact
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              GridSearchCV hyperparameter tuning on Random Forest boosted accuracy from 90.94% to 92.38% and F1-score to 95.88%.
+            </p>
+          </div>
+        </div>
+
       </div>
 
     </div>

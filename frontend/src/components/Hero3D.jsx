@@ -237,7 +237,7 @@ export default function Hero3D() {
   }, []);
 
   return (
-    <div className="relative w-full h-[480px] lg:h-[620px] flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-[560px] lg:h-[720px] flex items-center justify-center overflow-hidden">
       {/* 3D WebGL Canvas */}
       <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
