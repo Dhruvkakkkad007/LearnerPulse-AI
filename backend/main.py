@@ -16,9 +16,17 @@ app = FastAPI(
 )
 
 # 2. Configure CORS
+# Replace the Vercel URL below with your actual deployed frontend URL
+ALLOWED_ORIGINS = [
+    "http://localhost:5173",           # Local dev
+    "http://127.0.0.1:5173",          # Local dev (alternate)
+    "https://learnerpulse-ai.vercel.app",  # ← Replace with your actual Vercel URL
+    "https://*.vercel.app",            # Allow all Vercel preview deployments
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
