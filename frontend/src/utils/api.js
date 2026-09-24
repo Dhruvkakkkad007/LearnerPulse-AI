@@ -1,12 +1,15 @@
 /**
  * LearnAI Backend API Service
- * Connects React Frontend to the FastAPI Machine Learning Server (port 8000)
+ * Connects React Frontend to the FastAPI Machine Learning Server
  * with graceful fallback to local ML engine if backend is offline.
+ * 
+ * Set VITE_API_URL in your .env file or Vercel environment variables
+ * to point to your deployed Render backend URL.
  */
 
 import { predictStudentOutcome } from './mlEngine';
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
 
 /**
  * Check if the FastAPI backend server is online & model is loaded
